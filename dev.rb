@@ -15,6 +15,7 @@ class Dev
     puts project_list
   end
 
+  # Change all dev sessions to project
   def change(project)
     ensure_project_exists(project)
 
