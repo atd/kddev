@@ -8,7 +8,7 @@
 # - completion in .bash_completion
 #   TODO: `dev __bash_completion__`
 class Dev
-  PATH = "~/rails"
+  PATH = "~/dev"
   STATION_PATH = "vendor/plugins/station"
 
   def projects
