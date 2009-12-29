@@ -22,12 +22,22 @@ class Dev
     dev_sessions.each{ |r| r.change(project) }
   end
 
+  # Change current session to project
+  def switch(project)
+    ensure_project_exists(project)
+    
+    current_session.change(project)
+  end
+
   # Help message
   def help
     puts <<-EOS
 Usage: dev <command> args
 
-help: this message
+Available commands:
+- change <project> - change all sessions to <project>
+- help             - this message
+- switch <project> - change current session to <project>
 EOS
   end
 
@@ -40,7 +50,7 @@ EOS
   def ensure_project_exists(project)
     unless project_list =~ /^#{ project }$/
       puts "Unknown project #{ project }"
-      exit
+      exit(1)
     end
   end
 
@@ -55,6 +65,16 @@ EOS
   # List of development sessions
   def dev_sessions
     @dev_sessions ||= all_sessions.select{ |w| w.dev? }
+  end
+
+  def current_session
+    return @current_session unless @current_session.nil?
+
+    if ENV["KONSOLE_DBUS_SESSION"].nil?
+      puts "Error: $KONSOLE_DBUS_SESSION is not defined"
+      exit(1)
+    end
+    @current_session = DevSession.new(ENV["KONSOLE_DBUS_SESSION"])
   end
 end
 
@@ -98,9 +118,16 @@ class DevSession
   end
 
   private
+  def silently
+    system "stty -echo"
+    yield
+    system "stty echo"
+  end
 
   def exec(text)
-    `qdbus org.kde.konsole #{ dbus_name } org.kde.konsole.Session.sendText "#{ text + "\n" }"`
+    silently do
+      `qdbus org.kde.konsole #{ dbus_name } org.kde.konsole.Session.sendText "#{ text + "\n" }"`
+    end
   end
 end
 
@@ -108,7 +135,7 @@ dev = Dev.new
 
 if ARGV.size == 0
   dev.help
-  exit
+  exit(1)
 end
 
 cmd = ARGV.shift
@@ -118,7 +145,7 @@ when '__bash_complete__'
   case ARGV.first
   when "dev"
     puts (dev.public_methods - Object.new.public_methods).join(" ")
-  when "change"
+  when "change", "switch"
     dev.projects
   else
     puts
@@ -144,8 +171,8 @@ else
   unless dev.respond_to?(cmd)
     puts "Unknown command #{ cmd }"
     puts
-    dev_help
-    exit
+    dev.help
+    exit(1)
   end
 
   dev.send(cmd, *ARGV)
