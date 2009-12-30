@@ -7,19 +7,13 @@ Yes, we are so crazy!
 
 Currently, there are the following commands:
 
-projects:: List available projects
+  dev projects # List available projects
 
-  dev projects
+  dev change project # Change all the development windows to project
 
-change:: Change all the development windows to project
+  dev switch project # Change only current Konsole to project
 
-  dev change project
-
-switch:: Change only current Konsole to project
-
-  dev switch project
-
-help:: Get help message
+  dev help # Get help message
 
 == License
 
