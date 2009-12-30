@@ -1,4 +1,4 @@
-= Konsole DBus Development Framework
+= Konsole DBus Development framework
 
 This is a framework for managing development Konsole windows using DBus.
 Yes, we are so crazy!

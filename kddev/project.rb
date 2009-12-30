@@ -1,8 +1,8 @@
-module Dev
+module Kddev
   class Project
     class << self
       def list
-        `ls #{ Dev::PATH }`
+        `ls #{ PATH }`
       end
 
       def find(name)
@@ -25,7 +25,7 @@ module Dev
     end
 
     def path
-      File.join(File.expand_path(Dev::PATH), name)
+      File.join(File.expand_path(PATH), name)
     end
 
     def exists?

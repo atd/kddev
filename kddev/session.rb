@@ -1,4 +1,4 @@
-module Dev
+module Kddev
   class Session
     class << self
       # List of all konsole Session
@@ -36,11 +36,11 @@ module Dev
     end
 
     def dev?
-      title =~ Dev::PREFIX
+      title =~ PREFIX
     end
 
     def station?
-      title =~ Dev::STATION_PREFIX
+      title =~ STATION_PREFIX
     end
 
     def change(project)
@@ -48,8 +48,8 @@ module Dev
     end
 
     def path(project)
-      station? && project.subpath?(Dev::STATION_PATH) ?
-        project.subpath(Dev::STATION_PATH) :
+      station? && project.subpath?(STATION_PATH) ?
+        project.subpath(STATION_PATH) :
         project.path
     end
 

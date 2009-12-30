@@ -1,5 +1,5 @@
 # Konsole DBus Development Framework
-module Dev
+module Kddev
   #TODO: this should be in a config file
   
   PATH = "~/dev"
@@ -9,9 +9,9 @@ module Dev
   STATION_PREFIX = /^dev-2/
 end
 
-require File.join(File.dirname(__FILE__), 'dev', 'command')
+require File.join(File.dirname(__FILE__), 'kddev', 'command')
 
-dev = Dev::Command.new
+dev = Kddev::Command.new
 
 if ARGV.size == 0
   dev.help

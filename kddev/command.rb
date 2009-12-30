@@ -2,7 +2,7 @@
   require File.join(File.dirname(__FILE__), file)
 end
 
-module Dev
+module Kddev
   class Command
     def projects
       puts Project.list

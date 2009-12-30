@@ -3,9 +3,9 @@ Installation:
 Add executable /usr/local/bin/dev with
 
   #!/usr/bin/ruby1.8
-  load "path/to/dev.rb"
+  load "path/to/kddev.rb"
 
-Add completion in .bash_completion. See dev.rb
+Add completion in .bash_completion. See kddev.rb
 
 TODO: `dev __bash_completion__`
 
