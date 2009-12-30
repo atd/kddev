@@ -1,0 +1,40 @@
+= Konsole DBus Development Framework
+
+This is a framework for managing development Konsole windows using DBus.
+Yes, we are so crazy!
+
+== Commands
+
+Currently, there are the following commands:
+
+projects:: List available projects
+
+  dev projects
+
+change:: Change all the development windows to project
+
+  dev change project
+
+switch:: Change only current Konsole to project
+
+  dev switch project
+
+help:: Get help message
+
+== License
+
+Copyright 2010 Antonio Tapiador
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
