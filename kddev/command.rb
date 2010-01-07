@@ -4,6 +4,10 @@ end
 
 module Kddev
   class Command
+    def init
+      puts Window.new.dbus_name
+    end
+
     def projects
       puts Project.list
     end
