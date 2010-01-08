@@ -12,6 +12,11 @@ module Kddev
       puts Project.list
     end
 
+    # See if there are missing jobs in all windows
+    def jobs
+      Session.all.each{ |s| s.exec("jobs") }
+    end
+
     # Change all dev sessions to project
     def change(project)
       Session.all.each{ |r| r.change(Project.find!(project)) }
@@ -30,6 +35,7 @@ module Kddev
   Available commands:
   - change <project> - change all sessions to <project>
   - help             - this message
+  - jobs             - show if there are background jobs in all sessions
   - switch <project> - change current session to <project>
   EOS
     end

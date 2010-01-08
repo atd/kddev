@@ -53,7 +53,13 @@ module Kddev
         project.path
     end
 
-    private
+    def exec(text)
+      silently do
+        `qdbus org.kde.konsole #{ dbus_name } org.kde.konsole.Session.sendText "#{ text + "\n" }"`
+      end
+    end
+
+    protected
 
     def silently
       system "stty -echo"
@@ -61,10 +67,5 @@ module Kddev
       system "stty echo"
     end
 
-    def exec(text)
-      silently do
-        `qdbus org.kde.konsole #{ dbus_name } org.kde.konsole.Session.sendText "#{ text + "\n" }"`
-      end
-    end
   end
 end
