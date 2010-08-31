@@ -39,5 +39,11 @@ module Kddev
     def subpath?(p)
       File.exists?(subpath(p))
     end
+
+    def subpath!(p)
+      File.exists?(subpath(p)) ?
+        File.join(path, p) :
+        nil
+    end
   end
 end

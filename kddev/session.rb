@@ -39,8 +39,8 @@ module Kddev
       title =~ PREFIX
     end
 
-    def station?
-      title =~ STATION_PREFIX
+    def plugin?
+      title =~ PLUGIN_PREFIX
     end
 
     def change(project)
@@ -48,8 +48,8 @@ module Kddev
     end
 
     def path(project)
-      station? && project.subpath?(STATION_PATH) ?
-        project.subpath(STATION_PATH) :
+      plugin? &&
+        PLUGIN_PATHS.map{ |p| project.subpath!(p) }.compact.first ||
         project.path
     end
 

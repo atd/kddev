@@ -5,8 +5,8 @@ module Kddev
   PATH = "~/dev"
   PREFIX = /^dev-\d+/
 
-  STATION_PATH = "vendor/plugins/station"
-  STATION_PREFIX = /^dev-2/
+  PLUGIN_PATHS = [ "vendor/plugins/station", "vendor/plugins/social_stream" ]
+  PLUGIN_PREFIX = /^dev-2/
 end
 
 require File.join(File.dirname(__FILE__), 'kddev', 'command')
